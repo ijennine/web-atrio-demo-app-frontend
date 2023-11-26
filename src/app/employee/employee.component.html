@@ -1,0 +1,40 @@
+<div class="card">
+  <div class="card-body" *ngIf="employeeCreation || employeeModification">
+    <form>
+      <div class="form-group">
+        <label for="inputFirstName">Prénom</label>
+        <input [(ngModel)]="employee.firstName" type="text" class="form-control" id="inputFirstName" name="inputFirstName" placeholder="Jhon">
+      </div>
+      <div class="form-group">
+        <label for="inputLastName">Nom</label>
+        <input [(ngModel)]="employee.lastName" type="text" class="form-control" id="inputLastName" name="inputLastName" placeholder="Doe">
+      </div>
+      <div class="form-group">
+        <label for="inputDateOfBith">Date de naissance</label>
+        <input [(ngModel)]="employee.birthDate" type="text" class="form-control" id="inputDateOfBith" name="inputDateOfBith" placeholder="2000-01-01">
+      </div>
+    </form>
+  </div>
+
+  <div class="card-body" *ngIf="!(employeeCreation || employeeModification)">
+    <p>Prénom : {{ employee.firstName }}</p>
+    <p>Nom : {{ employee.lastName }}</p>
+    <!-- Use Caps pipe-->
+    <p>Date de naissance : {{ employee.birthDate }}</p>
+    <!-- Use pipe to transform this to age -->
+  </div>
+
+  <div class="card-footer">
+    <div class="d-flex">
+      <div class="ms-auto">
+        <button *ngIf="!(employeeCreation || employeeModification)" type="button" class="btn btn-danger me-3" (click)="deleteEmployee()">Supprimer</button>
+        <button *ngIf="!(employeeCreation || employeeModification)" type="button" class="btn btn-primary me-3">Ajouter Emploi</button>
+        <button *ngIf="!(employeeCreation || employeeModification)" type="button" class="btn btn-primary" (click)="toggleEmployeeModification()">Modifier</button>
+
+        <button *ngIf="employeeModification" type="button" class="btn btn-danger  me-3" (click)="cancelEdit()">Annuler</button>
+        <button *ngIf="employeeCreation" type="button" class="btn btn-primary" (click)="addEmployee()">Ajouter</button>
+        <button *ngIf="employeeModification" type="button" class="btn btn-primary" (click)="modifyEmployee()">Modifier</button>
+      </div>
+    </div>
+  </div>
+</div>
